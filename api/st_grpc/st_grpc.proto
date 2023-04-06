@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package st_grpc;
+
+option go_package = "github.com/arthur404dev/st-grpc/api/st_grpc";
+
+message LiveMessage {
+  string id = 1;
+  string author = 2;
+  string avatar_url = 3;
+  string content = 4;
+  int64 timestamp = 5;
+}
+
+service LiveMessageService {
+  rpc StreamMessages (StreamRequest) returns (stream LiveMessage) {}
+}
+
+message StreamRequest {
+  string service_name = 1;
+}
